@@ -1,0 +1,84 @@
+package hotelReservation2D;
+
+import java.util.Scanner;
+
+public class hotelReservation {
+
+	//import java.util.Scanner;
+	//public class hotel {
+		public static void main(String[] args) {
+			Scanner ae = new Scanner(System.in);
+			int hotel[][] = new int[7][5]; // jagged array
+			
+			int choice;
+			//System.out.println("===== Hotel Reservation =====");
+			do { System.out.println("===== Hotel Reservation =====");
+				System.out.print("1. View Rooms\r\n"
+					+ "2. Check In\r\n"
+					+ "3. Check Out\r\n"
+					+ "4. Exit" + "\r\nEnter your choice (1-4): ");
+			 choice = ae.nextInt(); //the person choose
+					
+			
+		 System.out.println("===============");	
+			switch (choice) {
+			case 1 : //print table
+		 System.out.println("1. View");
+		 for(int i = 0; i<hotel.length; i++) {
+		 	 System.out.print("floor" + (i+1) + ": " + "\t");
+		 	 for(int j = 0; j<hotel[i].length; j++) {
+		 		System.out.print(" [" + hotel[i][j] + "] " + "\t");
+		 	 }
+		 	 System.out.println();
+		 	 }
+				break;
+				
+			case 2 : //checking in
+				System.out.println("2. Check in");
+			//	for(int i = 0; i<hotel.length; i++) {
+					System.out.print("Floor number (1-7): ");
+					int row = ae.nextInt() -1;
+				//	for(int j = 0; j<hotel[i].length; j++) {
+						System.out.print("Room number (1-5): ");
+						int column = ae.nextInt() -1;
+						//hotel[i][j] = ae.nextInt();
+					
+				if(hotel[row][column] == 1) {
+					System.out.println("Room occupied.");
+				}else if (hotel[row][column] == 0) {
+						System.out.println("Check in Successful! Room is now available.");
+						hotel[row][column] = 1;
+				}else {
+					System.out.println("Room already empty");
+				}	break;		
+			case 3 : checkOut(hotel, ae);
+				System.out.println("3. Check out");
+				break;
+			case 4 :
+				System.out.println("4. Exiting program....");
+			
+				break;
+		}	
+			}while(choice != 4);		
+		}
+		//method for checkout
+			 public static void checkOut(int[][] hotel, Scanner ae) {
+			 System.out.print("Enter Floor number (1-7) to Check Out: ");
+			 int row = ae.nextInt() - 1;
+			 System.out.print("Enter Room number (1-5) to Check Out: ");
+			 int col = ae.nextInt() - 1;
+			 if (row >= 0 && row < 7 && col >= 0 && col < 5) {
+			 if (hotel[row][col] == 1) {
+			 hotel[row][col] = 0;
+			 System.out.println("Check-out successful! Room is now empty.");
+			 } else {
+			 System.out.println("Room is already empty.");
+			 }
+			 } else {
+			 System.out.println("Invalid Floor or Room number.");
+			 }
+			
+			
+			
+	}
+	}
